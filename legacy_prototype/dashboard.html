@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CampusPool</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <span>🚗</span> CampusPool
+        </div>
+        <div class="flex-center" style="gap: 1rem;">
+            <span id="user-greeting" style="color: var(--text-muted); font-size: 0.9rem;">Welcome, User</span>
+            <button id="logout-btn" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Log Out</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-grid">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="menu-item active" data-tab="home">
+                <span>🏠</span> Home
+            </div>
+            <div class="menu-item" data-tab="my-rides">
+                <span>🚘</span> My Rides
+            </div>
+            <div class="menu-item" data-tab="requests">
+                <span>📩</span> Requests <span id="request-badge" class="badge badge-pending hidden">0</span>
+            </div>
+            
+            <div style="margin-top: auto; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                <div class="menu-item" onclick="alert('Profile settings coming soon!')">
+                    <span>⚙️</span> Settings
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <!-- Dynamic Content Loaded Here -->
+            <div class="text-center" style="margin-top: 4rem;">
+                <h2>Loading...</h2>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Ride Modal (Driver Only) -->
+    <div id="create-ride-modal" class="modal-overlay">
+        <div class="modal">
+            <h2 style="margin-bottom: 1.5rem;">Post a New Ride</h2>
+            <form id="create-ride-form">
+                <div class="form-group">
+                    <label class="form-label">From</label>
+                    <input type="text" class="form-control" name="from" placeholder="Starting Point" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">To</label>
+                    <input type="text" class="form-control" name="to" value="College Campus" placeholder="Destination" required>
+                </div>
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" name="date" required>
+                    </div>
+                    <div>
+                        <label class="form-label">Time</label>
+                        <input type="time" class="form-control" name="time" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Available Seats</label>
+                    <input type="number" class="form-control" name="seats" min="1" max="6" value="3" required>
+                </div>
+                <div class="flex-center" style="gap: 1rem; margin-top: 2rem;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('create-ride-modal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Post Ride</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- OTP Modal -->
+    <div id="otp-modal" class="modal-overlay">
+        <div class="modal text-center">
+            <h3>Start Ride</h3>
+            <p>Ask passenger for the OTP to start the ride.</p>
+            <div class="otp-container">
+                <input type="text" class="otp-input" maxlength="1" data-index="0">
+                <input type="text" class="otp-input" maxlength="1" data-index="1">
+                <input type="text" class="otp-input" maxlength="1" data-index="2">
+                <input type="text" class="otp-input" maxlength="1" data-index="3">
+            </div>
+            <button class="btn btn-primary btn-block" id="verify-otp-btn">Verify & Start</button>
+            <button class="btn btn-outline btn-block" style="margin-top: 1rem;" onclick="closeModal('otp-modal')">Cancel</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/dashboard.js"></script>
+    <script>
+        window.closeModal = (id) => {
+            document.getElementById(id).classList.remove('open');
+        }
+        window.openModal = (id) => {
+            document.getElementById(id).classList.add('open');
+        }
+    </script>
+</body>
+</html>

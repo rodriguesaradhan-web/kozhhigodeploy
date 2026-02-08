@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - CampusPool</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span>🛡️</span> CampusPool Admin
+        </div>
+        <div>
+            <button onclick="window.location.href='index.html'" class="btn btn-outline"
+                style="padding: 0.5rem;">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top: 2rem;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
+            <div class="card text-center">
+                <h3 id="stat-rides">0</h3>
+                <p>Total Rides</p>
+            </div>
+            <div class="card text-center">
+                <h3 id="stat-users">0</h3>
+                <p>Total Users</p>
+            </div>
+            <div class="card text-center">
+                <h3 id="stat-active" style="color: var(--success);">0</h3>
+                <p>Active Now</p>
+            </div>
+        </div>
+
+        <h2>Recent Activity</h2>
+        <div class="card" style="padding: 0;">
+            <table style="width: 100%; border-collapse: collapse; color: var(--text-muted);">
+                <thead>
+                    <tr style="border-bottom: 1px solid var(--glass-border); text-align: left;">
+                        <th style="padding: 1rem;">ID</th>
+                        <th style="padding: 1rem;">Driver</th>
+                        <th style="padding: 1rem;">Route</th>
+                        <th style="padding: 1rem;">Status</th>
+                        <th style="padding: 1rem;">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="activity-table-body">
+                    <!-- Rows -->
+                    <tr>
+                        <td colspan="5" class="text-center" style="padding: 2rem;">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="module">
+        import { service } from './js/service.js';
+
+        async function loadStats() {
+            const stats = await service.getAllStats();
+            document.getElementById('stat-rides').textContent = stats.totalRides;
+            document.getElementById('stat-users').textContent = stats.totalUsers;
+            document.getElementById('stat-active').textContent = stats.activeRides;
+
+            const tbody = document.getElementById('activity-table-body');
+            tbody.innerHTML = stats.rides.map(ride => `
+                <tr style="border-bottom: 1px solid var(--glass-border);">
+                    <td style="padding: 1rem;">#${ride.id.slice(-4)}</td>
+                    <td style="padding: 1rem;">${ride.driverName}</td>
+                    <td style="padding: 1rem;">${ride.from} -> ${ride.to}</td>
+                    <td style="padding: 1rem;">
+                        <span class="badge badge-${ride.status === 'PENDING' ? 'pending' : (ride.status === 'COMPLETED' ? 'completed' : 'active')}">
+                            ${ride.status}
+                        </span>
+                    </td>
+                    <td style="padding: 1rem;">${new Date(ride.createdAt).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+        }
+
+        loadStats();
+    </script>
+</body>
+
+</html>

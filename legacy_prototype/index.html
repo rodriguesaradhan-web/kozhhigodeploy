@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusPool - Student Ride Sharing</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="Safe and efficient ride sharing for students in Calicut.">
+</head>
+
+<body>
+    <div class="auth-wrapper">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+
+        <div class="animate-fade-in auth-card">
+            <div class="card">
+                <div class="text-center" style="text-align: center; margin-bottom: 2rem;">
+                    <h1 class="text-gradient">CampusPool</h1>
+                    <p>Share rides. Save money. Make friends.</p>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form">
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="login-email" placeholder="student@college.edu"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="login-password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                    <p style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem;">
+                        New to CampusPool? <a href="#" onclick="toggleAuth('register')"
+                            style="color: var(--secondary);">Create Account</a>
+                    </p>
+                </form>
+
+                <!-- Register Form (Hidden) -->
+                <form id="register-form" class="hidden">
+                    <div class="role-options">
+                        <div class="role-card selected" onclick="selectRole('passenger', this)">
+                            <span class="role-icon">🎒</span>
+                            <div>Passenger</div>
+                        </div>
+                        <div class="role-card" onclick="selectRole('driver', this)">
+                            <span class="role-icon">🚗</span>
+                            <div>Driver</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="register-role" value="passenger">
+
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="reg-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="reg-email" placeholder="student@college.edu"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="reg-password"
+                            placeholder="Create a strong password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                    <p style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem;">
+                        Already have an account? <a href="#" onclick="toggleAuth('login')"
+                            style="color: var(--secondary);">Log In</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center; margin-bottom: 1rem;">
+        <a href="admin.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem;">Admin Panel
+            (Demo)</a>
+    </div>
+
+    <script type="module" src="js/auth.js"></script>
+    <script>
+        function toggleAuth(type) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+
+            if (type === 'register') {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                registerForm.classList.add('animate-fade-in');
+            } else {
+                registerForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                loginForm.classList.add('animate-fade-in');
+            }
+        }
+
+        function selectRole(role, element) {
+            document.querySelectorAll('.role-card').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('register-role').value = role;
+        }
+
+        // Expose functions to window for onclick handlers
+        window.toggleAuth = toggleAuth;
+        window.selectRole = selectRole;
+    </script>
+</body>
+
+</html>
