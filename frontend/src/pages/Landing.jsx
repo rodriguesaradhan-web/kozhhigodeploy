@@ -105,39 +105,33 @@ const Landing = () => {
         
         <div className="features-grid">
           <div className="feature-card">
-            <div className="feature-icon">🚗</div>
-            <h3>Safe & Reliable</h3>
-            <p>Verified drivers and passengers for a secure riding experience</p>
+            <div className="feature-icon">�</div>
+            <h3>Made for Kozhikode Students</h3>
+            <p>Designed specifically for students travelling daily within Kozhikode city and nearby areas</p>
           </div>
 
           <div className="feature-card">
             <div className="feature-icon">💵</div>
-            <h3>Transparent Pricing</h3>
-            <p>No hidden charges. Know exactly what you'll pay upfront</p>
+            <h3>Affordable Daily Travel</h3>
+            <p>Share petrol costs and reduce dependency on expensive auto rides and crowded buses</p>
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">📱</div>
-            <h3>Easy to Use</h3>
-            <p>Simple interface to book or offer rides in just a few taps</p>
+            <div className="feature-icon">🚦</div>
+            <h3>Reduce City Traffic</h3>
+            <p>Encourages ride sharing and reduces the number of single-rider two-wheelers on roads</p>
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">📍</div>
-            <h3>Real-time Tracking</h3>
-            <p>Track your ride and driver location in real-time</p>
+            <div className="feature-icon">🎓</div>
+            <h3>Built for Student Community</h3>
+            <p>Safe and trusted travel within college networks in Kozhikode</p>
           </div>
 
           <div className="feature-card">
-            <div className="feature-icon">⭐</div>
-            <h3>Ratings & Reviews</h3>
-            <p>Build trust through transparent ratings and driver reviews</p>
-          </div>
-
-          <div className="feature-card">
-            <div className="feature-icon">🔒</div>
-            <h3>Secure Transactions</h3>
-            <p>Your data and payment information are always protected</p>
+            <div className="feature-icon">🛵</div>
+            <h3>Smarter Urban Mobility</h3>
+            <p>Promotes efficient use of existing two-wheelers for daily commuting</p>
           </div>
         </div>
       </section>
