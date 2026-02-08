@@ -218,7 +218,8 @@ const PassengerDashboard = ({ tab = 'home' }) => {
             const formData = new FormData();
             formData.append('drivingLicense', drivingLicense);
 
-            const response = await fetch('http://localhost:5000/api/auth/apply-driver', {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            const response = await fetch(`${API_URL}/api/auth/apply-driver`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

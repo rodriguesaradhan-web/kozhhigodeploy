@@ -1,6 +1,9 @@
 node_modules/
 .env
+.env.local
+.env.production
 .venv/
+dist/
 uploads/driver-licenses/*
 uploads/student-ids/*
 !uploads/driver-licenses/.gitkeep

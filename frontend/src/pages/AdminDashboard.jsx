@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '../api';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../api';
 
 const AdminDashboard = () => {
     const { toast, showConfirm } = useToast();
@@ -350,7 +351,7 @@ const AdminDashboard = () => {
                                         <h5 style={{ margin: '0 0 0.5rem 0' }}>Student ID Image:</h5>
                                         {reg.studentIdImagePath ? (
                                             <img
-                                                src={`http://localhost:5000${reg.studentIdImagePath}`}
+                                                src={`${API_URL}${reg.studentIdImagePath}`}
                                                 alt="Student ID"
                                                 style={styles.imagePreview}
                                                 onError={(e) => {
@@ -427,7 +428,7 @@ const AdminDashboard = () => {
                                         <h5 style={{ margin: '0 0 0.5rem 0' }}>Driving License:</h5>
                                         {app.drivingLicenseImagePath ? (
                                             <img
-                                                src={`http://localhost:5000${app.drivingLicenseImagePath}`}
+                                                src={`${API_URL}${app.drivingLicenseImagePath}`}
                                                 alt="Driving License"
                                                 style={styles.imagePreview}
                                                 onError={(e) => {

@@ -1,8 +1,13 @@
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: `${API_URL}/api`,
 });
+
+// Export for use in components that need the base URL (e.g., image src)
+export { API_URL };
 
 // Add a request interceptor to include the token
 api.interceptors.request.use(

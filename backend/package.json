@@ -9,6 +9,9 @@
     "db:test": "node test-conn.js",
     "db:list": "node list-db.js"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -18,6 +21,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3"
   },
