@@ -54,6 +54,10 @@ app.use(cors({
         if (origin.match(/^http:\/\/(localhost|127\.0\.0\.1|192\.168\.\d+\.\d+|172\.\d+\.\d+\.\d+|10\.\d+\.\d+\.\d+)(:\d+)?$/)) {
             return callback(null, true);
         }
+        // Allow Vercel preview/production URLs
+        if (origin.match(/\.vercel\.app$/)) {
+            return callback(null, true);
+        }
         if (allowedOrigins.includes(origin)) {
             return callback(null, true);
         }
